@@ -1,3 +1,10 @@
+/**
+ * Application entry point.
+ * Bootstraps the Vue application with all required plugins, PrimeVue components,
+ * and global directives before mounting it onto the `#app` DOM element.
+ *
+ * @module main
+ */
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'

@@ -7,7 +7,9 @@ import {Tutorial} from "../domain/model/tutorial.entity.js";
  */
 export class TutorialAssembler {
     /**
-     * @param {Object} resource - Tutorial resource payload.
+     * Converts a single tutorial resource payload into a domain entity.
+     *
+     * @param {Object} resource - Tutorial resource payload from the infrastructure layer.
      * @returns {Tutorial} Tutorial entity.
      */
     static toEntityFromResource(resource) {

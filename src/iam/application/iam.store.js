@@ -1,3 +1,9 @@
+/**
+ * Application service store for the IAM bounded context.
+ * It coordinates authentication commands and exposes UI-facing auth state.
+ *
+ * @module useIamStore
+ */
 import {IamApi} from "../infrastructure/iam-api.js";
 import {defineStore} from "pinia";
 import {computed, ref} from "vue";
@@ -8,24 +14,24 @@ import {SignInCommand} from "../domain/sign-in.command.js";
 import {SignUpCommand} from "../domain/sign-up.command.js";
 
 const iamApi = new IamApi();
+
 /**
- * Application service store for the IAM bounded context.
- * It coordinates authentication commands and exposes UI-facing auth state.
+ * Reactive store that exposes IAM commands and authentication state.
  *
  * @returns {Object} Store state and actions.
  */
 const useIamStore = defineStore('iam', () => {
-    /** @type {import('vue').Ref<Array<User>>} Array of user entities. */
+    /** @type {import('vue').Ref<import('../domain/user.entity.js').User[]>} List of user entities loaded from infrastructure. */
     const users = ref([]);
-    /** @type {import('vue').Ref<Array<Error>>} Array of error messages. */
+    /** @type {import('vue').Ref<Error[]>} Errors encountered during IAM operations. */
     const errors = ref([]);
-    /** @type {import('vue').Ref<boolean>} Flag indicating if users have been loaded. */
+    /** @type {import('vue').Ref<boolean>} Whether users have been loaded from the API. */
     const usersLoaded = ref(false);
-    /** @type {import('vue').Ref<boolean>} Flag indicating if a user is signed in. */
+    /** @type {import('vue').Ref<boolean>} Whether a user is currently signed in. */
     const isSignedIn = ref(false);
-    /** @type {import('vue').Ref<string|null>} The currently signed-in user entity. */
+    /** @type {import('vue').Ref<string|null>} Username of the currently signed-in user, or null when unauthenticated. */
     const currentUsername = ref(null);
-    /** @type {import('vue').Ref<number|null>} The currently signed-in user entity. */
+    /** @type {import('vue').Ref<number>} Identifier of the currently signed-in user; 0 when unauthenticated. */
     const currentUserId = ref(0);
     /** @type {import('vue').ComputedRef<string|null>} The current authentication token. */
     const currentToken = computed(() => isSignedIn.value ? localStorage.getItem('token') : null);

@@ -1,3 +1,9 @@
+/**
+ * Lazy-loaded route definitions for the Publishing bounded context.
+ * Registered as children of the `/publishing` route in the application router.
+ *
+ * @module publishingRoutes
+ */
 // Lazy-loaded components
 const categoryList = () => import('./views/category-list.vue');
 const categoryForm = () => import('./views/category-form.vue');

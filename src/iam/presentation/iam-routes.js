@@ -1,3 +1,9 @@
+/**
+ * Lazy-loaded route definitions for the IAM bounded context.
+ * Registered as children of the `/iam` route in the application router.
+ *
+ * @module iamRoutes
+ */
 const signInForm = () => import('./views/sign-in-form.vue')
 const signUpForm = () => import('./views/sign-up-form.vue')
 const iamRoutes = [

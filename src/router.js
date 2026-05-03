@@ -1,3 +1,10 @@
+/**
+ * Application router configuration.
+ * Registers all top-level routes, wires bounded-context child routes,
+ * and applies the global navigation guard that manages document titles.
+ *
+ * @module router
+ */
 import {createRouter, createWebHistory} from "vue-router";
 import Home from "./shared/presentation/views/home.vue";
 import publishingRoutes from "./publishing/presentation/publishing-routes.js";
